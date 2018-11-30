@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+typedef struct Point{
+	int x;
+	int y;
+ 
+} Point;
+ 
+void moveX(Point * a, int z){
+	a->x = a->x + z;
+}
+ 
+int main(){
+	struct Point a;
+	int z;
+	scanf("%d %d %d", &a.x, &a.y, &z);
+	moveX(&a, z);
+	printf("%d %d", a.x, a.y);
+ 
+	return 0;
+}
