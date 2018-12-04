@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int NOD(int a, int b){
+	printf("%d, %d\n", a, b);
+	if (b == 0) {
+		return a;
+	}
+	NOD(b, a%b);
+}
+
+
+int main() {
+	int a, b, c;
+	scanf("%d, %d", &a, &b);
+	c = NOD(a, b);
+	printf("%d", c);
+	return 0;
+}
