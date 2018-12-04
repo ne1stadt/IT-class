@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+typedef struct Tri{
+    int x1;
+    int y1;
+    int x2;
+    int y2;
+    int x3;
+    int y3;
+} Tri;
+
+void getTri(Tri* d){
+    return * d;
+}
+
+void writeTri(Tri d1){
+    printf("%d %d\n", d1.x1, d1.y1);
+    printf("%d %d\n", d1.x2, d1.y2);
+    printf("%d %d\n", d1.x3, d1.y3);
+}
+
+float squareTri(Tri tr1){
+    float s;
+    s = ((tr1.x1 - tr1.x3) * (tr1.y2 - tr1.y3)) - ((tr1.y1 - tr1.y3) * (tr1.x2 - tr1.x3));
+    s = s/2;
+    return fabs(s);
+}
+
+float length(x1, y1, x2, y2){
+    float l;
+    l = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    return l;
+}
+
+float perimTri(Tri d){
+    float p;
+    p = length(d.x1, d.x2, d.y1, d.y2) + length(d.x2, d.x3, d.y2, d.y3) + length(d.x1, d.x3, d.y1, d.y3);
+    return p;
+}
+
+void rotate90(Tri * a){
+    int k;
+    k = a->x1;
+    a->x1 = (-1) * a->y1;
+    a->y1 = k;
+
+    k = a->x2;
+    a->x2 = (-1) * a->y2;
+    a->y2 = k;
+
+    k = a->x3;
+    a->x3 = (-1) * a->y3;
+    a->y3 = k;
+
+    return * a;
+}
+
+int main(){
+    struct Tri a;
+    float s, p;
+
+    scanf("%d %d", &a.x1, &a.y1);
+    scanf("%d %d", &a.x2, &a.y2);
+    scanf("%d %d", &a.x3, &a.y3);
+
+    printf("\n\n");
+
+    getTri(&a);
+
+    printf("writeTri:\n");
+    writeTri(a);
+    printf("\n\n");
+
+    printf("squareTri:\n");
+    s = squareTri(a);
+    printf("%f", s);
+    printf("\n\n");
+
+    printf("perimTri:\n");
+    p = perimTri(a);
+    printf("%f", p);
+    printf("\n\n");
+
+    rotate90(&a);
+    printf("rotate90:\n");
+    printf("%d %d\n", a.x1, a.y1);
+    printf("%d %d\n", a.x2, a.y2);
+    printf("%d %d\n", a.x3, a.y3);
+}
