@@ -12,7 +12,16 @@ typedef struct Tri{
 } Tri;
 
 void getTri(Tri* d){
-    return * d;
+    int a, b;
+    scanf("%d %d", &a, &b);
+    d->x1 = a;
+    d->y1 = b;
+    scanf("%d %d", &a, &b);
+    d->x2 = a;
+    d->y2 = b;
+    scanf("%d %d", &a, &b);
+    d->x3 = a;
+    d->y3 = b;
 }
 
 void writeTri(Tri d1){
@@ -28,7 +37,7 @@ float squareTri(Tri tr1){
     return fabs(s);
 }
 
-float length(x1, y1, x2, y2){
+float length(int x1, int y1, int x2, int y2){
     float l;
     l = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     return l;
@@ -36,23 +45,27 @@ float length(x1, y1, x2, y2){
 
 float perimTri(Tri d){
     float p;
-    p = length(d.x1, d.x2, d.y1, d.y2) + length(d.x2, d.x3, d.y2, d.y3) + length(d.x1, d.x3, d.y1, d.y3);
-    return p;
+    p = length(d.x1, d.y1, d.x2, d.y2) + length(d.x2, d.y2, d.x3, d.y3) + length(d.x1, d.y1, d.x3, d.y3);
+    if (squareTri(d) != 0){
+        return p;
+    } else {
+        return (p/2);
+    }
 }
 
 void rotate90(Tri * a){
     int k;
     k = a->x1;
-    a->x1 = (-1) * a->y1;
-    a->y1 = k;
+    a->x1 = a->y1;
+    a->y1 = (-1) * k;
 
     k = a->x2;
-    a->x2 = (-1) * a->y2;
-    a->y2 = k;
+    a->x2 = a->y2;
+    a->y2 = (-1) * k;
 
     k = a->x3;
-    a->x3 = (-1) * a->y3;
-    a->y3 = k;
+    a->x3 = a->y3;
+    a->y3 = (-1) * k;
 
     return * a;
 }
@@ -61,13 +74,9 @@ int main(){
     struct Tri a;
     float s, p;
 
-    scanf("%d %d", &a.x1, &a.y1);
-    scanf("%d %d", &a.x2, &a.y2);
-    scanf("%d %d", &a.x3, &a.y3);
-
-    printf("\n\n");
-
     getTri(&a);
+    
+    printf("\n\n");
 
     printf("writeTri:\n");
     writeTri(a);
