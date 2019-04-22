@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+#define N 1000
+
+// для временного хранения данных, считанных из файла
+typedef  struct TR{
+    char name[20]; // имя жителя
+        char sosed[20]; // имя соседа
+    short int status; // статус (для следующей задчи)
+}TmpRes;
+
+// описание жителя города
+typedef  struct Res{
+    char name[20]; // имя жителя
+    char status;  // статус (для следующей задачи)
+}Villager;
+
+// описание дома жителя
+typedef struct D{
+    Villager vllgr; // житель
+    struct D *right; // указатель на соседа справа
+}Dom;
+
+// описание горока
+typedef struct Cn{
+    Dom * tzar; // указатель на первый дом
+        // предполагается, что это начало односвязного циклического списка,
+        // описывающего деревню
+    Dom * last; // указатель на последний дом
+    int n;   // количество домов
+}Country;
+// получение данных из файла
+TmpRes * getData(FILE *f, int *n){
+    char * ptr;
+    ptr = (char *)calloc(N, sizeof(char));
+    fscanf(f, "%s", ptr);
+    for(int i = 0; i < N; i++){
+        printf("%c", *(ptr+i));
+    }
+    return 0;
+};
+
+// печать плана города
+void prCountry(Country *cnt);
+
+
+
+void buildCountry(TmpRes* tm, int n, int where, Country* cnt){
+    if(){
+
+    }
+
+
+};
+
+int main(){
+    FILE *f = fopen("SPISOK.DAT", "r");
+    if(file == NULL){
+		printf("не могу открыть файл '%s'",fname);
+		return 0;
+	}
+	int n;
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+    }
+    struct Country Moscow;
+    buildCountry(getData(f, n), n, 0, Moscow);
+
+
+
+}
